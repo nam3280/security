@@ -1,6 +1,6 @@
 <template>
   <Header/>
-  <Home/>
+  <RouterView/>
   <Footer/>
 </template>
 
@@ -8,14 +8,30 @@
 
 import Footer from "@/components/Footer.vue";
 import Header from "@/components/Header.vue";
-import Home from "@/pages/Home.vue";
+import store from "@/scripts/store";
+import axios from "axios";
+import {useRoute} from "vue-router";
+import {watch} from "vue";
 
 export default {
   name: 'App',
   components: {
     Header,
-    Footer,
-    Home
+    Footer
+  },
+  setup(){
+    const check = () =>{
+      axios.get("/api/account/check", { withCredentials: true }).then(({data}) => {
+        console.log(data);
+        store.commit("setAccount",data || 0);
+      })
+    }
+
+    const route = useRoute();
+
+    watch(route, () => {
+      check();
+    })
   }
 }
 </script>

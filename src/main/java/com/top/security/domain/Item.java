@@ -35,7 +35,7 @@ public class Item {
     @Min(0)
     @Max(100)
     @Column(nullable = false, columnDefinition = "TINYINT(3) UNSIGNED")
-    private Byte discountFee;
+    private Byte discountPer;
 
     @CreatedDate
     @Column(updatable = false, nullable = false)

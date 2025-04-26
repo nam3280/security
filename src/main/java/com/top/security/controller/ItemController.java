@@ -15,7 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Log4j2
 public class ItemController {
-
     private final ItemService itemService;
 
     @GetMapping("/items")
